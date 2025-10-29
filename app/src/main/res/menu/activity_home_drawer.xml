@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_debug_coverage"
+            android:checked="true"
+            android:title="测试包 (覆盖率debug)" />
+        <item
+            android:id="@+id/nav_debug"
+            android:checked="true"
+            android:title="测试包  (debug)" />
+        <item
+            android:id="@+id/nav_preview"
+            android:title="灰度包  (preview)" />
+        <item
+            android:id="@+id/nav_release"
+            android:title="生产包  (release)" />
+    </group>
+
+</menu>

@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android' // 正确使用 Kotlin Android 插件
+    id 'kotlin-parcelize' // 添加 Parcelize 插件
+}
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.8.12"
+//    excludes = [
+//            'com.hihonor.push.sdk.**' // 通配符排除整个SDK包
+//    ]
+}
+
+android {
+    // AGP > 7的配置
+    testCoverage.jacocoVersion = "0.8.12"
+
+    namespace 'com.example.jacocohonortestdemo'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.example.jacocohonortestdemo"
+        minSdk 33
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            crunchPngs false
+
+            /**打开覆盖率统计开关**/
+            testCoverageEnabled = true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+    buildFeatures {
+        compose true
+        viewBinding true
+    }
+}
+
+dependencies {
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar']) // 加载 libs 目录下的 AAR 文件
+    // 其他依赖项
+
+    def nav_version = "2.9.5"
+
+    // Jetpack Compose Integration
+
+    // Views/Fragments Integration
+
+    // JSON serialization library, works with the Kotlin serialization plugin.
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+
+    implementation 'androidx.compose.material3:material3:1.3.0' // 根据需要调整版本
+    implementation 'com.google.android.material:material:1.12.0' // Use the latest version
+    implementation 'androidx.appcompat:appcompat:1.6.1' // Use the latest version
+
+    implementation 'androidx.compose.material3:material3-window-size-class:1.2.0' //
+
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.3'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.3'
+    implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
+
+    // 确保其他依赖项是最新的且兼容
+
+    // Compose 编译器
+}
