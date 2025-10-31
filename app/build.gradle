@@ -29,12 +29,24 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        config {
+            // 根据您实际的签名信息，替换以下参数中的xxxx
+            keyAlias 'test'
+            keyPassword 'du123456'
+            storeFile file('app.jks')
+            storePassword 'du123456'
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.config
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
+            signingConfig signingConfigs.config
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false

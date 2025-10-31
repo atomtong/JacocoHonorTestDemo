@@ -2,7 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+
+    <queries>
+        <intent>
+            <action android:name="com.hihonor.push.action.BIND_PUSH_SERVICE" />
+        </intent>
+    </queries>
+
+
     <application
+        android:name=".SdkApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,7 +23,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
-        
+
+        <meta-data
+            android:name="com.hihonor.push.app_id"
+            android:value="104528586" />
+
+        <service
+            android:name="MyHonorMsgService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.hihonor.push.action.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".HomeActivity"
             android:exported="true"
@@ -24,6 +47,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
